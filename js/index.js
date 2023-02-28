@@ -1,30 +1,96 @@
 
-// var firstName = 'Muhammadrasul';
+// alert('Barcha shartlarga rozimisiz');
+
+// var userName = prompt('Iltimos ismingizni kiriting');
+// console.log(typeof userName);
+
 // var age = 22;
+// var age = 25;
+// console.log(age);
 
-// console.log(typeof firstName);
-// console.log(typeof age);
+// var age = 'dewjhvdbkew';
 
-// var studentId = "123465";
+// console.log(age);
 
-// console.log(typeof studentId);
+// let age = 22;
+// console.log(age);
 
-// var isStudent = true;
-// var isMarried = false;
+// age = 25;
 
-// console.log(typeof isStudent);
-// console.log(typeof isMarried);
+// console.log(age);
 
 
-// var myAge;
+// age = 30;
 
-// console.log(typeof myAge);
-// var myAge = 22;
-// console.log(myAge);
+// console.log(age);
 
-// var education = null;
-// console.log(education);
+// var firstName = 'Jamshid';
 
-// var id = Symbol('5');
+// console.log(firstName);
 
-// var hugeNumber = BigInt(99566513516846521313213210);
+// const firstName = 'Muhammadrasul';
+
+// console.log(firstName);
+
+
+// console.log(job);
+// const job = 'Developer';
+
+
+// const country = 'Uzbekistan';
+// let population = 36000000;
+// const continent = 'Asia';
+
+// console.log(typeof country);
+// console.log(typeof population);
+// console.log(typeof continent);
+
+// const myName = 'Muhammadrasul';
+// const myAge = 22;
+// const myJob = 'Developer';
+
+// console.log('Mening ismim ' + myName + '\n' + ' Men ' + myAge + '\n' + ' yoshdaman ' + ' men ' + myJob + 'man');
+
+// console.log(`Mening ismim ${myName} men ${myAge}
+// yoshdaman men ${myJob}man`);
+
+// const addTwoNums = 20 % 3;
+
+// console.log(addTwoNums);
+
+// let num = 5;
+// console.log(num);
+// ++num;
+// console.log(num);
+// num++;
+// console.log(num);
+// num--;
+
+// console.log(num);
+
+// const squareNum = 5 ** 50;
+// console.log(squareNum);
+
+// const compareNum = 4 !== 4;
+
+// console.log(compareNum);
+
+// const userName = prompt('Ism kiriting'); // Shohjahon
+
+// if (userName === 'Muhammadrasul') {
+//     console.log('Siz teachersiz');
+// } else if (userName === 'Islombek') {
+//     console.log('Siz ham ustozsiz');
+// } else if (userName === 'Sunnat') {
+//     console.log('Siz oquvchisiz');
+// } else {
+//     console.log('Tanimadim');
+// }
+
+const userAge = +prompt('Yoshingiz');
+
+if (userAge >= 18) {
+    console.log('Siz guvohnoma olsangiz boladi');
+} else {
+    console.log(`Siz hozir sabr qiling ${18 - userAge} yil bor`);
+}
