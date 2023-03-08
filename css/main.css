@@ -1,0 +1,7 @@
+.warning {
+    color: red;
+}
+
+.danger {
+    border: 1px solid red;
+}
