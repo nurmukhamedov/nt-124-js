@@ -1,30 +1,71 @@
+// const studentsArray = ['Muhammad', true, false, 5, 6, 'Muhammadrasul', true];
+// const element = studentsArray[studentsArray.length - 2];
+// console.log(element);
 
-// var firstName = 'Muhammadrasul';
-// var age = 22;
+// const fruits = new Array('Apple', 'Banana', 'Orange');
 
-// console.log(typeof firstName);
-// console.log(typeof age);
+// console.log(fruits[1]);
 
-// var studentId = "123465";
+// const numbers = [1, 2, 3, 4, 5, 6];
 
-// console.log(typeof studentId);
+// const checkArray = numbers.includes(4);
 
-// var isStudent = true;
-// var isMarried = false;
+// console.log(checkArray);
 
-// console.log(typeof isStudent);
-// console.log(typeof isMarried);
+// numbers.push(52, 47, 15, 108);
+// numbers.pop();
+// numbers.unshift(100);
+// numbers.unshift('Hello');
+// numbers.shift()
+// numbers.shift()
+// numbers.shift()
+// numbers.shift()
+// numbers.shift()
+
+// console.log(numbers);
+// const numbers = [1, 2, 8]
+// const myArray2 = ['Orange', 'Apple', 'Banana', [1, 2, 8, 5]];
+
+// const nestedArray = myArray2[3];
+// console.log(nestedArray[2]);
+
+const calcTip = function (bill) {
+    if (bill > 50 && bill < 300) {
+        return bill * 0.15
+    } else {
+        return bill * 0.3
+    }
+}
+const myArray = [125, 555, 44, 650, 85, 25, 126];
+
+// console.log(calcTip(myArray[0]));
+// console.log(calcTip(myArray[1]));
+// console.log(calcTip(myArray[2]));
+
+// for (let i = 20; i <= 100; i++) {
+//     console.log(i);
+// }
 
 
-// var myAge;
 
-// console.log(typeof myAge);
-// var myAge = 22;
-// console.log(myAge);
+// for (let i = 0; i < myArray.length; i++) {
+//     console.log(calcTip(myArray[i]));
+// }
 
-// var education = null;
-// console.log(education);
 
-// var id = Symbol('5');
 
-// var hugeNumber = BigInt(99566513516846521313213210);
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const newNumbers = [];
+
+const calcNumber = function (num) {
+    return num * 2
+}
+
+for (let index = 0; index < numbers.length; index++) {
+    const element = calcNumber(numbers[index])
+    newNumbers.push(element);
+}
+console.log(newNumbers);
+
+
