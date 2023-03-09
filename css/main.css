@@ -1,7 +1,91 @@
-.warning {
-    color: red;
+/* Style for the form */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.danger {
-    border: 1px solid red;
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.form input {
+    margin-bottom: 10px;
+    border: 1px solid gray;
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.form .warning {
+    color: red;
+    font-size: 14px;
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    .form .btn {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    /* Style for the box */
+    .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid gray;
+        padding: 20px;
+        width: 50%;
+        margin: 0 auto;
+        border-radius: 10px;
+}
+
+.box__info {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Style for the second form */
+.convertor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.convertor input[type="number"] {
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid black;
+    margin-right: 10px;
+    width: 100px;
+    font-size: 16px;
+}
+
+.convertor select {
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+}
+
+.convertor button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
