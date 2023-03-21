@@ -1,30 +1,107 @@
+// const employees = {
+//     Bob: 1700,
+//     John: 6000,
+//     Evelina: 1200,
+//     Jack: 5600
+// }
 
-// var firstName = 'Muhammadrasul';
-// var age = 22;
+// const employees2 = {
+//     Bob: 1700,
+//     John: 6000,
+//     Evelina: 1200,
+//     Jack: 5600
+// }
 
-// console.log(typeof firstName);
-// console.log(typeof age);
+// const calcSumSalaries = (salaries) => {
+//     let totalSalary = 0;
+//     for (let salary in salaries) {
+//         totalSalary += salaries[salary]
+//     }
 
-// var studentId = "123465";
-
-// console.log(typeof studentId);
-
-// var isStudent = true;
-// var isMarried = false;
-
-// console.log(typeof isStudent);
-// console.log(typeof isMarried);
+//     return totalSalary;
+// }
+// console.log(calcSumSalaries(employees));
+// console.log(calcSumSalaries(employees2));
 
 
-// var myAge;
+// const numbers = [-1, -3, -2, 1, 3, 5, 20];
+// const missingNumsArray = [];
 
-// console.log(typeof myAge);
-// var myAge = 22;
-// console.log(myAge);
+// console.log(...numbers);
 
-// var education = null;
-// console.log(education);
+// const findingMissingNumbers = function (nums) {
+//     let min = Math.min(...nums);
+//     let max = Math.max(...nums);
 
-// var id = Symbol('5');
+//     for (let i = min; i <= max; i++) {
+//         if (!nums.includes(i)) {
+//             missingNumsArray.push(i);
+//         }
+//     }
+//     return missingNumsArray
+// }
 
-// var hugeNumber = BigInt(99566513516846521313213210);
+// console.log(findingMissingNumbers(numbers));
+
+
+// const numbers = [1, 2, 3, 4, 5, 7];
+
+
+// const checkNumber = (nums, checkingNum) => {
+
+//     if (nums.includes(checkingNum)) {
+//         return 'Bor'
+//     } else {
+//         return 'Yoq'
+//     }
+// }
+
+// console.log(checkNumber(numbers, 8));
+
+
+const colors = ['Red', 'Green', 'Black', 'Yellow', 'Orange', 'Purple'];
+
+// const selectedColors = colors.slice(2, 3);
+
+// console.log(selectedColors);
+
+// const sentence = 'Hello world dears welcome to my you tube channels';
+// const selectedText = sentence.slice(4, 14);
+// console.log(selectedText);
+
+// const selectedItems = function (items) {
+
+//     const item = items.slice(0, 3);
+
+//     return item;
+// }
+// console.log(selectedItems(colors));
+
+// const fruits = ['Banana', 'Apple', 'Orange', 'Watermelon', 'Melon', 'Peach'];
+
+// fruits.splice(2, 3, 'Hello World');
+
+// console.log(fruits);
+
+// const numbers = [1, 7, 2, 3, 4, 5, 6, 8, 7];
+
+// console.log(numbers.indexOf(2, 1));
+
+// const selectIndex = function (nums, target) {
+
+//     return nums.indexOf(target)
+
+// }
+
+// console.log(selectIndex(numbers, 8));
+
+// const numbers = [2, 4, 6, 8, 10, 6];
+
+// const checkNums = function (numsArray) {
+//     return numsArray % 2 === 0;
+// }
+
+// const result = numbers.some(num => num % 2 !== 0);
+
+// console.log(result);
+
