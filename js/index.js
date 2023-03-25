@@ -196,7 +196,12 @@ const newAnimals = animals.filter((animal) => {
     }
 });
 
+<<<<<<< HEAD
 console.log(newAnimals);
+=======
+console.log(newAnimals); 
+
+>>>>>>> 66487d04a32250be00529b583ea69d4e995af7b2
 
 const users = [
     {
