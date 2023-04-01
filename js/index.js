@@ -1,138 +1,145 @@
-// const form = document.querySelector('.form'),
-//     name = document.querySelector('#name'),
-//     price = document.querySelector('#price'),
-//     itemId = document.querySelector('#itemId'),
-//     itemList = document.querySelector('.itemList');
-
-// form.addEventListener('submit', (e) => {
-//     e.preventDefault();
-
-//     if (itemId.value) {
-
-//         item = JSON.parse(localStorage.getItem(itemId.value));
-//         item.name = name.value;
-//         item.price = price.value
-
-//     } else {
-
-//         item = {
-//             name: name.value,
-//             price: price.value
-//         }
-//         itemId.value = Date.now();
-//     }
-//     localStorage.setItem(itemId.value, JSON.stringify(item));
-//     form.reset();
-//     itemId.value = '';
-//     render();
-// })
-
-// function render() {
-//     itemList.innerHTML = ''
-
-//     for (const key in localStorage) {
-//         if (localStorage.hasOwnProperty(key)) {
-//             const item = JSON.parse(localStorage.getItem(key))
-//             const li = document.createElement('li');
-//             li.innerHTML = `<span>Name: ${item.name}</span> <span>Price: $${item.price}</span>`;
-//             itemList.appendChild(li);
-
-//             const editButton = document.createElement('button');
-//             editButton.textContent = 'Edit';
-//             li.appendChild(editButton);
-
-//             editButton.addEventListener('click', () => {
-//                 name.value = item.name;
-//                 price.value = item.price;
-//                 itemId.value = key;
-//             })
-
-//             const deleteButton = document.createElement('button');
-//             deleteButton.textContent = 'Delete';
-//             li.appendChild(deleteButton);
-
-//             deleteButton.addEventListener('click', () => {
-//                 localStorage.removeItem(key);
-//                 render();
-//             });
-//         }
-//     }
-// }
-
-// render();
-
-
 // const box = document.querySelector('.box');
 
-// const text1 = document.createElement('p')
-// const text2 = document.createElement('p')
-// const text3 = document.createElement('p')
+// fetch('https://restcountries.com/v3.1/all').then((response) => response.json()).then((data) => data.map((countries) => {
+//     const img = document.createElement('img');
+//     img.src = `${countries.flags.png}`
+//     img.alt = `"${countries.flags.alt}"`
 
-// const myFragment = document.createDocumentFragment();
+//     box.appendChild(img);
 
-// myFragment.appendChild(text1);
-// myFragment.appendChild(text2);
-// myFragment.appendChild(text3);
+//     const name = document.createElement('h2');
+//     name.textContent = countries.name.common;
 
-// box.appendChild(myFragment);
-// const myFunc = () => {
-//     console.log('Async code');
+//     box.appendChild(name);
+
+//     const capital = document.createElement('h4');
+//     capital.textContent = countries.capital
+
+//     box.appendChild(capital);
+
+//     const populationNum = document.createElement('h4');
+
+//     const populationInString = String(countries.population);
+
+//     if (populationInString.length === 6) {
+//         populationNum.textContent = `${populationInString.slice(0, 3)}k`;
+//         box.appendChild(populationNum)
+//     } else {
+//         populationNum.textContent = populationInString;
+//         box.appendChild(populationNum);
+//     }
+// }));
+
+// const imagesUrl = 'https://image.tmdb.org/t/p/w500';
+// let url = 'https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6';
+// const searchUrl = 'https://api.themoviedb.org/3/search/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&query=';
+
+
+
+// function myFun(factor) {
+
+//     return function (num) {
+//         return factor * num
+//     }
 // }
 
-// setTimeout(myFunc, 2000);
+// const multiplyNum = myFun(4);
 
-// console.log('Hello World');
+// console.log(multiplyNum(4));
 
-
-// console.log('By World');
-
-
-// let pizza;
-
-// function orderPizza() {
-//     console.log('Order pizza');
-
-//     setTimeout(() => {
-//         pizza = 'Pizza'
-//     }, 2000);
+// function myFun() {
+//     console.log('Hello world');
 // }
-// orderPizza();
-// console.log('Call my friend');
 
-// console.log('Having a shower');
+// setTimeout(myFun, 2000);
 
-// setTimeout(() => {
-//     console.log(`Eating ${pizza}`);
-// }, 2500);
+// function sayHello(name, callback) {
+//     console.log(`hello I am ${name}`);
 
-const box = document.querySelector('.box');
+//     callback();
+// }
 
-fetch('https://restcountries.com/v3.1/all').then((response) => response.json()).then((data) => data.map((countries) => {
-    const img = document.createElement('img');
-    img.src = `${countries.flags.png}`
-    img.alt = `"${countries.flags.alt}"`
+// function sayBye() {
+//     console.log('Good bye');
+// }
 
-    box.appendChild(img);
+// sayHello('Muhammadrasul', sayBye);
 
-    const name = document.createElement('h2');
-    name.textContent = countries.name.common;
 
-    box.appendChild(name);
+const imagesUrl = 'https://image.tmdb.org/t/p/w500';
+let url = 'https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6';
 
-    const capital = document.createElement('h4');
-    capital.textContent = countries.capital
 
-    box.appendChild(capital);
 
-    const populationNum = document.createElement('h4');
+const search = document.querySelector('.search');
 
-    const populationInString = String(countries.population);
+const movieList = document.querySelector('.box');
 
-    if (populationInString.length === 6) {
-        populationNum.textContent = `${populationInString.slice(0, 3)}k`;
-        box.appendChild(populationNum)
+const fragment = document.createDocumentFragment();
+
+async function fetchData() {
+
+    if (!search.value) {
+        url = 'https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6'
     } else {
-        populationNum.textContent = populationInString;
-        box.appendChild(populationNum);
+        url = `https://api.themoviedb.org/3/search/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&query=${search.value}`
     }
-}))
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        movieList.innerHTML = '';
+
+        data.results.map((movie) => {
+            console.log(movie);
+
+            const movieBox = document.createElement('div');
+            movieBox.classList.add('movie-box');
+
+            const images = document.createElement('img');
+            images.src = `${imagesUrl}${movie.backdrop_path}`;
+            images.alt = movie.title;
+
+            const title = document.createElement('h2');
+            title.textContent = movie.title;
+
+            const rating = document.createElement('span');
+            rating.textContent = movie.vote_average;
+
+            movieBox.appendChild(images);
+            movieBox.appendChild(title);
+            movieBox.appendChild(rating);
+            fragment.appendChild(movieBox);
+
+            movieList.appendChild(fragment);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+fetchData();
+
+const searchBtn = document.querySelector('.searchBtn');
+
+searchBtn.addEventListener('click', () => {
+    fetchData();
+})
+
+// 5 dan past bo'lsa backrground color qizil bo'lsin
+// 5 dan baland va 8 dan past bo'lsa backrgoubd color sariq chiqsin.
+// agar 8 dan baland bo'lsa background yashil bo'lsin.
+
+
+// const options = {
+//     method: 'GET',
+//     headers: {
+//         'X-RapidAPI-Key': 'cf812e6b39msh77575a1c454d246p1b5032jsn9d81105df2bb',
+//         'X-RapidAPI-Host': 'livescore6.p.rapidapi.com'
+//     }
+// };
+
+// fetch('https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=soccer&Timezone=-7', options)
+//     .then(response => response.json())
+//     .then(response => console.log(response))
+//     .catch(err => console.error(err));
