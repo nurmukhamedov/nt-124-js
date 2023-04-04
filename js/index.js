@@ -77,6 +77,12 @@ const movieList = document.querySelector('.box');
 
 const fragment = document.createDocumentFragment();
 
+const loader = document.querySelector('.loader');
+
+const loaderDiv = document.createElement('div');
+loaderDiv.classList.add('loader-div')
+loader.appendChild(loaderDiv)
+
 async function fetchData() {
 
     if (!search.value) {
@@ -119,6 +125,7 @@ async function fetchData() {
 }
 
 fetchData();
+
 
 const searchBtn = document.querySelector('.searchBtn');
 
