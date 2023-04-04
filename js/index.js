@@ -1,34 +1,46 @@
-// const box = document.querySelector('.box');
+const box = document.querySelector('.box');
 
-// fetch('https://restcountries.com/v3.1/all').then((response) => response.json()).then((data) => data.map((countries) => {
-//     const img = document.createElement('img');
-//     img.src = `${countries.flags.png}`
-//     img.alt = `"${countries.flags.alt}"`
+fetch('https://restcountries.com/v3.1/all').then((response) => response.json()).then((data) => data.map((countries) => {
+    const img = document.createElement('img');
+    img.src = `${countries.flags.png}`
+    img.alt = `"${countries.flags.alt}"`
+    box.appendChild(img);
 
-//     box.appendChild(img);
+    const name = document.createElement('h2');
+    name.textContent = countries.name.common;
+    box.appendChild(name);
 
-//     const name = document.createElement('h2');
-//     name.textContent = countries.name.common;
+    const capital = document.createElement('h4');
+    capital.textContent = countries.capital
 
-//     box.appendChild(name);
+    box.appendChild(capital);
 
-//     const capital = document.createElement('h4');
-//     capital.textContent = countries.capital
+    const populationNum = document.createElement('h4');
 
-//     box.appendChild(capital);
+    const populationInString = String(countries.population);
 
-//     const populationNum = document.createElement('h4');
+    if (populationInString.length === 6) {
+        populationNum.textContent = `${populationInString.slice(0, 3)}k`;
+        box.appendChild(populationNum)
+    } else {
+        populationNum.textContent = populationInString;
+        box.appendChild(populationNum);
+    }
 
-//     const populationInString = String(countries.population);
+    if (countries.currencies) {
+        const myCurrency = Object.keys(countries.currencies);
+        const currencyText = document.createElement('p');
+        currencyText.textContent = myCurrency[0];
+        box.appendChild(currencyText)
+    } else {
+        const currencyText = document.createElement('p');
+        currencyText.textContent = 'Pul birligi yoq';
+        box.appendChild(currencyText)
+    }
 
-//     if (populationInString.length === 6) {
-//         populationNum.textContent = `${populationInString.slice(0, 3)}k`;
-//         box.appendChild(populationNum)
-//     } else {
-//         populationNum.textContent = populationInString;
-//         box.appendChild(populationNum);
-//     }
-// }));
+    console.log(countries.currencies);
+
+}));
 
 // const imagesUrl = 'https://image.tmdb.org/t/p/w500';
 // let url = 'https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6';
@@ -66,87 +78,159 @@
 // sayHello('Muhammadrasul', sayBye);
 
 
-const imagesUrl = 'https://image.tmdb.org/t/p/w500';
-let url = 'https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6';
+// const imagesUrl = 'https://image.tmdb.org/t/p/w500';
+// let url = 'https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6';
 
 
 
-const search = document.querySelector('.search');
+// const search = document.querySelector('.search');
 
-const movieList = document.querySelector('.box');
+// const movieList = document.querySelector('.box');
 
-const fragment = document.createDocumentFragment();
+// const fragment = document.createDocumentFragment();
 
-const loader = document.querySelector('.loader');
+// const loader = document.querySelector('.loader');
 
-const loaderDiv = document.createElement('div');
-loaderDiv.classList.add('loader-div')
-loader.appendChild(loaderDiv)
+// const loaderDiv = document.createElement('div');
+// loaderDiv.classList.add('loader-div')
+// loader.appendChild(loaderDiv)
 
-async function fetchData() {
+// let currentPage = 1;
 
-    if (!search.value) {
-        url = 'https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6'
-    } else {
-        url = `https://api.themoviedb.org/3/search/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&query=${search.value}`
-    }
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
+// async function fetchData() {
 
-        movieList.innerHTML = '';
-
-        data.results.map((movie) => {
-            console.log(movie);
-
-            const movieBox = document.createElement('div');
-            movieBox.classList.add('movie-box');
-
-            const images = document.createElement('img');
-            images.src = `${imagesUrl}${movie.backdrop_path}`;
-            images.alt = movie.title;
-
-            const title = document.createElement('h2');
-            title.textContent = movie.title;
-
-            const rating = document.createElement('span');
-            rating.textContent = movie.vote_average;
-
-            movieBox.appendChild(images);
-            movieBox.appendChild(title);
-            movieBox.appendChild(rating);
-            fragment.appendChild(movieBox);
-
-            movieList.appendChild(fragment);
-        })
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-fetchData();
-
-
-const searchBtn = document.querySelector('.searchBtn');
-
-searchBtn.addEventListener('click', () => {
-    fetchData();
-})
-
-// 5 dan past bo'lsa backrground color qizil bo'lsin
-// 5 dan baland va 8 dan past bo'lsa backrgoubd color sariq chiqsin.
-// agar 8 dan baland bo'lsa background yashil bo'lsin.
-
-
-// const options = {
-//     method: 'GET',
-//     headers: {
-//         'X-RapidAPI-Key': 'cf812e6b39msh77575a1c454d246p1b5032jsn9d81105df2bb',
-//         'X-RapidAPI-Host': 'livescore6.p.rapidapi.com'
+//     if (!search.value) {
+//         url = `https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&page=${currentPage}`
+//     } else {
+//         url = `https://api.themoviedb.org/3/search/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&query=${search.value}`
 //     }
-// };
+//     try {
+//         const response = await fetch(url);
+//         const data = await response.json();
 
-// fetch('https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=soccer&Timezone=-7', options)
-//     .then(response => response.json())
-//     .then(response => console.log(response))
-//     .catch(err => console.error(err));
+//         movieList.innerHTML = '';
+//         console.log(data);
+//         data.results.map((movie) => {
+
+//             const movieBox = document.createElement('div');
+//             movieBox.classList.add('movie-box');
+
+//             const images = document.createElement('img');
+//             images.src = `${imagesUrl}${movie.backdrop_path}`;
+//             images.alt = movie.title;
+
+//             const title = document.createElement('h2');
+//             title.textContent = movie.title;
+
+//             const rating = document.createElement('span');
+//             rating.textContent = movie.vote_average;
+
+//             movieBox.appendChild(images);
+//             movieBox.appendChild(title);
+//             movieBox.appendChild(rating);
+//             fragment.appendChild(movieBox);
+
+//             movieList.appendChild(fragment);
+//         })
+//         const paginationWrapper = document.querySelector('.pagination_wrapper');
+
+//         paginationWrapper.innerHTML = '';
+
+//         if (data.total_pages > 1) {
+//             for (let i = 1; i <= 10; i++) {
+//                 const button = document.createElement('button');
+//                 button.textContent = i;
+//                 if (currentPage === i) {
+//                     button.classList.add('active')
+//                 }
+//                 button.addEventListener('click', () => {
+//                     currentPage = i;
+//                     fetchData();
+//                 })
+//                 paginationWrapper.appendChild(button);
+//             }
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+// fetchData();
+
+
+// const searchBtn = document.querySelector('.searchBtn');
+
+// searchBtn.addEventListener('click', () => {
+//     fetchData();
+// })
+
+// function myFun() {
+//     console.log('Hello world');
+// }
+
+// // const timeOut = setTimeout(myFun, 5000);
+// // const btn = document.querySelector('.btn');
+
+// // btn.addEventListener('click', () => {
+// //     clearTimeout(timeOut)
+// // });
+
+// // const myInterval = setInterval(myFun, 1000);
+
+// // setTimeout(() => {
+// //     clearInterval(myInterval);
+// // }, 5000);
+
+
+// const arr = [1, 2, 3, 4, 5];
+// const arr2 = [6, 7, 8, 9, 10];
+
+// const [a, b, c] = arr;
+
+// console.log(a, b);
+
+// const person = {
+//     firstName: { name: 'Muhammadrasul' },
+//     age: 23,
+//     status: 'teacher'
+// }
+// const person2 = {
+//     johnName: 'John',
+//     johnAge: 32
+// }
+
+// // const { firstName: myName, age } = person;
+// // // const { name } = firstName;
+// // // console.log(firstName);
+// // // console.log(name);
+
+// // console.log(myName);
+
+
+// // const newObj = { ...person, ...person2 };
+
+// // console.log(newObj);
+
+// // const { firstName, ...newPerson } = person;
+// // console.log(firstName);
+// // console.log(newPerson);
+// // const newArr = [...arr, ...arr2]
+
+// // console.log(newArr);
+
+
+// // function myFun(...myData) {
+// //     console.log(myData);
+// // }
+
+// // myFun(1, 2, 3, 4, 5, 6, 7, 8);
+
+
+// const newObjArr = Object.entries(person);
+
+// console.log(newObjArr);
+
+// const onlyKeys = Object.keys(person);
+// const onlyValues = Object.values(person);
+// console.log(onlyValues);
+// console.log(onlyKeys);
