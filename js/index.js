@@ -95,67 +95,66 @@ fetch('https://restcountries.com/v3.1/all').then((response) => response.json()).
 // loaderDiv.classList.add('loader-div')
 // loader.appendChild(loaderDiv)
 
-// let currentPage = 1;
+let currentPage = 1;
 
-// async function fetchData() {
+async function fetchData() {
+    if (!search.value) {
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&page=${currentPage}`
+    } else {
+        url = `https://api.themoviedb.org/3/search/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&query=${search.value}`
+    }
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
 
-//     if (!search.value) {
-//         url = `https://api.themoviedb.org/3/discover/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&page=${currentPage}`
-//     } else {
-//         url = `https://api.themoviedb.org/3/search/movie?api_key=c1ba5d7054ad4225561ffacb783be3c6&query=${search.value}`
-//     }
-//     try {
-//         const response = await fetch(url);
-//         const data = await response.json();
+        movieList.innerHTML = '';
+        console.log(data);
+        data.results.map((movie) => {
 
-//         movieList.innerHTML = '';
-//         console.log(data);
-//         data.results.map((movie) => {
+            const movieBox = document.createElement('div');
+            movieBox.classList.add('movie-box');
 
-//             const movieBox = document.createElement('div');
-//             movieBox.classList.add('movie-box');
+            const images = document.createElement('img');
+            images.src = `${imagesUrl}${movie.backdrop_path}`;
+            images.alt = movie.title;
 
-//             const images = document.createElement('img');
-//             images.src = `${imagesUrl}${movie.backdrop_path}`;
-//             images.alt = movie.title;
+            const title = document.createElement('h2');
+            title.textContent = movie.title;
 
-//             const title = document.createElement('h2');
-//             title.textContent = movie.title;
+            const rating = document.createElement('span');
+            rating.textContent = movie.vote_average;
 
-//             const rating = document.createElement('span');
-//             rating.textContent = movie.vote_average;
+            movieBox.appendChild(images);
+            movieBox.appendChild(title);
+            movieBox.appendChild(rating);
+            fragment.appendChild(movieBox);
 
-//             movieBox.appendChild(images);
-//             movieBox.appendChild(title);
-//             movieBox.appendChild(rating);
-//             fragment.appendChild(movieBox);
+            movieList.appendChild(fragment);
+        })
+        const paginationWrapper = document.querySelector('.pagination_wrapper');
 
-//             movieList.appendChild(fragment);
-//         })
-//         const paginationWrapper = document.querySelector('.pagination_wrapper');
+        paginationWrapper.innerHTML = '';
 
-//         paginationWrapper.innerHTML = '';
+        if (data.total_pages > 1) {
+            for (let i = 1; i <= 10; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                if (currentPage === i) {
+                    button.classList.add('active')
+                }
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    fetchData();
+                })
+                paginationWrapper.appendChild(button);
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-//         if (data.total_pages > 1) {
-//             for (let i = 1; i <= 10; i++) {
-//                 const button = document.createElement('button');
-//                 button.textContent = i;
-//                 if (currentPage === i) {
-//                     button.classList.add('active')
-//                 }
-//                 button.addEventListener('click', () => {
-//                     currentPage = i;
-//                     fetchData();
-//                 })
-//                 paginationWrapper.appendChild(button);
-//             }
-//         }
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-// fetchData();
+fetchData();
 
 
 // const searchBtn = document.querySelector('.searchBtn');
