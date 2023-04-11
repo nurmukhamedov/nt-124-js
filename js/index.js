@@ -6,26 +6,20 @@ const form = document.getElementById('add-user-form');
 
 fetch(url).then((response) => response.json()).then((data) => {
     data.data.map((user) => {
-        const { id, first_name, last_name, email } = user;
+        const { id, first_name, last_name, email, avatar } = user;
         const row = document.createElement('tr');
-
         row.innerHTML = `
           <td>${id}</td>
           <td>${first_name}</td>
           <td>${last_name}</td>
           <td>${email}</td>
+          <td> <img src="${avatar}" alt="${first_name}"/> </td>
           <td><button class="edit-button" data-id="${id}" data-name="${first_name}" data-lName="${last_name}" data-email="${email}">Edit</button></td>
           <td><button data-id="${id}" class="delete-button">Delete</button></td>
         `
         tBody.appendChild(row);
-
-
-
     })
 }).catch((error) => console.error(error));
-
-
-
 
 
 tBody.addEventListener('click', (e) => {
@@ -52,7 +46,7 @@ tBody.addEventListener('click', (e) => {
             const tableRow = e.target.closest('tr');
             tableRow.remove();
 
-        }).catch((error) => console.error(error))
+        }).catch((error) => console.error(error));
     }
 })
 
@@ -65,51 +59,52 @@ form.addEventListener('submit', (e) => {
     const lName = document.getElementById('lName').value;
     const email = document.getElementById('email').value;
     const id = document.getElementById('update-id').value;
+    const avatar = document.getElementById("avatar").files[0];
 
+    const reader = new FileReader();
 
+    reader.readAsDataURL(avatar);
 
-    if (id) {
-        updateUser(id, name, lName, email);
-        form.reset();
+    console.log(reader);
 
-    } else {
+    reader.onload = () => {
+        const avatarUrl = reader.result;
 
-        const formData = {
-            name: name,
-            lName: lName,
-            email: email
-        }
-
-        fetch(url, {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify(formData)
-        }).then((response) => response.json()).then((data) => {
-            const row = document.createElement('tr');
-
-            row.innerHTML = `
-          <td>${data.id}</td>
-          <td>${name}</td>
-          <td>${lName}</td>
-          <td>${email}</td>
-          <td><button class="edit-button" data-id="${data.id}" data-name="${name}" data-lName="${lName}" data-email="${email}">Edit</button></td>
-          <td><button data-id="${id}" class="delete-button">Delete</button></td>
-        `
-            tBody.appendChild(row);
+        if (id) {
+            updateUser(id, name, lName, email);
             form.reset();
 
-        }).catch((error) => console.error(error));
+        } else {
 
+            const formData = {
+                name: name,
+                lName: lName,
+                email: email
+            }
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(formData)
+            }).then((response) => response.json()).then((data) => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+              <td>${data.id}</td>
+              <td>${name}</td>
+              <td>${lName}</td>
+              <td>${email}</td>
+              <td> <img src="${avatarUrl}" alt="${name}"/> </td>
+              <td><button class="edit-button" data-id="${data.id}" data-name="${name}" data-lName="${lName}" data-email="${email}">Edit</button></td>
+              <td><button data-id="${id}" class="delete-button">Delete</button></td>
+            `
+                tBody.appendChild(row);
+                form.reset();
+
+            }).catch((error) => console.error(error));
+        }
     }
-
 });
-
-
-
-
-
-
-
 
 async function updateUser(id, name, lName, email) {
 
@@ -159,12 +154,56 @@ async function deleteUser(id) {
     } catch (error) {
         console.error(error);
     }
-
 }
 
-import myFun from './allFunctions.js';
-import { myUrl } from './allFunctions.js';
+// const url = 'https://reqres.in/api/users';
+// const url2 = "https://jsonplaceholder.typicode.com/todos/1";
 
-console.log(myUrl);
+
+// // const getData = (url) => {
+
+// //     return new Promise((resolve, reject) => {
+
+// //         fetch(url).then((response) => {
+// //             if (response.ok) {
+// //                 return response.json();
+// //             } else {
+// //                 throw new Error('Responseda xatolik yuz berdi');
+// //             }
+
+// //         }).then((data) => resolve(data)).catch((error) => reject(error));
+// //     })
+// // }
+
+// // getData(url).then((data) => console.log(data)).catch((error) => console.error(error));
+
+// // getData(url2).then((data) => console.log(data)).catch((error) => console.error(error));
+
+
+// const getData2 = (url) => {
+
+//     return new Promise((resolve, reject) => {
+
+//         let data = new XMLHttpRequest();
+
+//         data.open('GET', url);
+
+//         data.onload = function () {
+//             if (data.status === 200) {
+//                 resolve(data)
+//             } else {
+//                 reject(Error('Responseda xatolik'))
+//             }
+//         }
+//         data.onerror = function () {
+//             reject(Error('Data olishda xatolik'))
+//         }
+//         data.send();
+//     });
+// }
+
+// getData2(url).then((data) => console.log(JSON.parse(data.responseText))).catch((error) => console.error(error));
+
+
 
 
